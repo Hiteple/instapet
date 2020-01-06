@@ -4,7 +4,7 @@ import { ListOfPhotoCards } from './components/ListOfPhotoCards'
 import { GlobalStyle } from './styles/GlobalStyle'
 import { Logo } from './components/Logo'
 
-const App = () => {
+export const App = () => {
   return (
     <>
       <GlobalStyle />
@@ -14,5 +14,3 @@ const App = () => {
     </>
   )
 }
-
-export default App
