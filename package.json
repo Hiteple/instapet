@@ -33,6 +33,7 @@
         "webpack-dev-server": "^3.10.1"
     },
     "dependencies": {
+        "intersection-observer": "^0.7.0",
         "react": "^16.12.0",
         "react-dom": "^16.12.0",
         "react-icons": "^3.8.0",
