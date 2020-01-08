@@ -1,5 +1,5 @@
-import React from "react";
-import { PhotoCard } from "../PhotoCard";
+import React from 'react'
+import { PhotoCard } from '../PhotoCard'
 
 export const ListOfPhotoCardsComponent = ({ data: { photos = [] } = {} }) => {
   return (
@@ -8,5 +8,5 @@ export const ListOfPhotoCardsComponent = ({ data: { photos = [] } = {} }) => {
         <PhotoCard key={photo.id} {...photo} />
       ))}
     </ul>
-  );
-};
+  )
+}
