@@ -1,50 +1,61 @@
-import React from 'react'
-import { Article, ImgWrapper, Image } from './styles'
-import { FavButton } from '../FavButton/FavButton'
-import { useLocalStorage } from '../../hooks/useLocalStorage'
+import React, { Fragment } from 'react'
+import { Article, ImgWrapper, Img } from './styles'
+
 import { useNearScreen } from '../../hooks/useNearScreen'
-import { ToggleLikeMutation } from '../container/ToggleLikeMutation'
+
+import { FavButton } from '../FavButton'
+import { ToggleLikeMutation } from '../../container/ToggleLikeMutation'
+
 import { Link } from '@reach/router'
+import PropTypes from 'prop-types'
 
-const DEFAULT_IMAGE =
-  'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
+const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60'
 
-export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
+export const PhotoCard = ({ id, liked, likes = 0, src = DEFAULT_IMAGE }) => {
   const [show, element] = useNearScreen()
-  const key = `like-${id}`
-  const [liked, setLiked] = useLocalStorage(key, false)
 
   return (
     <Article ref={element}>
-      {show && (
-        <>
+      {
+        show && <Fragment>
           <Link to={`/detail/${id}`}>
             <ImgWrapper>
-              <Image src={src} />
+              <Img src={src} />
             </ImgWrapper>
           </Link>
+
           <ToggleLikeMutation>
-            {toggleLike => {
-              const handleFavClick = () => {
-                !liked &&
-                  toggleLike({
-                    variables: {
-                      input: { id }
-                    }
-                  })
-                setLiked(!liked)
+            {
+              (toggleLike) => {
+                const handleFavClick = () => {
+                  toggleLike({ variables: {
+                    input: { id }
+                  } })
+                }
+
+                return <FavButton liked={liked} likes={likes} onClick={handleFavClick} />
               }
-              return (
-                <FavButton
-                  liked={liked}
-                  likes={likes}
-                  onClick={handleFavClick}
-                />
-              )
-            }}
+            }
           </ToggleLikeMutation>
-        </>
-      )}
+        </Fragment>
+      }
     </Article>
   )
+}
+
+PhotoCard.propTypes = {
+  id: PropTypes.string.isRequired,
+  liked: PropTypes.bool.isRequired,
+  src: PropTypes.string.isRequired,
+  likes: function (props, propName, componentName) {
+    const propValue = props[propName]
+
+    if (propValue === undefined) {
+      return new Error(`${propName} value must be defined`)
+    }
+
+    if (propValue < 0) {
+      return new Error(`${propName} value must be greater than 0`)
+    }
+  }
 }

@@ -12,12 +12,12 @@ export const ImgWrapper = styled.div`
   overflow: hidden;
   padding: 56.25% 0 0 0;
   position: relative;
-  width: 100%;
+  width: 100%; 
 `
 
-export const Image = styled.img`
+export const Img = styled.img`
   ${fadeIn()}
-  box-shadow: 0 10px 14px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 14px rgba(0, 0, 0, .2);
   height: 100%;
   object-fit: cover;
   position: absolute;

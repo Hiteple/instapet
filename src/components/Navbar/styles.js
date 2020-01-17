@@ -27,15 +27,17 @@ export const Link = styled(LinkRouter)`
   justify-content: center;
   text-decoration: none;
   width: 100%;
+
   &[aria-current] {
     color: #000;
-    &::after {
+
+    &:after {
       ${fadeIn({ time: '0.5s' })};
-      content: "_";
+      content: '·';
       position: absolute;
       bottom: 0;
-      font-size: 20px;
-      line-height: 35px;
+      font-size: 34px;
+      line-height: 20px;
     }
   }
 `
