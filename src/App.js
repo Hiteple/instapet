@@ -10,10 +10,15 @@ import { User } from './pages/User'
 import { NotRegisteredUser } from './pages/NotRegisteredUser'
 import { NotFound } from './pages/NotFound'
 
+<<<<<<< HEAD
 import { Router, Redirect } from '@reach/router'
 import { Context } from './Context'
 
 const Favs = React.lazy(() => import('./pages/Favs'))
+=======
+import { Router } from '@reach/router'
+import Context from './Context'
+>>>>>>> 0fac051efc47806907b67fba850277a9580c9a26
 
 export const App = () => {
   const { isAuth } = useContext(Context)
@@ -35,7 +40,27 @@ export const App = () => {
         <User path='/user' />
       </Router>
 
+<<<<<<< HEAD
       <NavBar />
     </Suspense>
+=======
+      <Context.Consumer>
+        {({ isAuth }) =>
+          isAuth ? (
+            <Router>
+              <Favs path='/favs' />
+              <User path='/user' />
+            </Router>
+          ) : (
+            <Router>
+              <NotRegisteredUser path='/favs' />
+              <NotRegisteredUser path='/user' />
+            </Router>
+          )}
+      </Context.Consumer>
+
+      <Navbar />
+    </div>
+>>>>>>> 0fac051efc47806907b67fba850277a9580c9a26
   )
 }

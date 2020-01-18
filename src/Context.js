@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react'
+<<<<<<< HEAD
 export const Context = createContext()
 
 const Provider = ({ children }) => {
@@ -23,6 +24,21 @@ const Provider = ({ children }) => {
       {children}
     </Context.Provider>
   )
+=======
+const Context = createContext()
+
+const Provider = ({ children }) => {
+  const [isAuth, setIsAuth] = useState(false)
+
+  const value = {
+    isAuth,
+    activateAuth: () => {
+      setIsAuth(true)
+    }
+  }
+
+  return <Context.Provider value={value}>{children}</Context.Provider>
+>>>>>>> 0fac051efc47806907b67fba850277a9580c9a26
 }
 
 export default {

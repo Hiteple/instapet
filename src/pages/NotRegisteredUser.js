@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Fragment, useContext } from 'react'
 import { Context } from '../Context'
 import { UserForm } from '../components/UserForm'
@@ -47,3 +48,16 @@ export const NotRegisteredUser = () => {
     </LoginMutation>
   </Fragment>
 }
+=======
+import React from 'react'
+import Context from '../Context'
+import { UserForm } from '../components/UserForm/index'
+
+export const NotRegisteredUser = () => (
+  <Context.Consumer>
+    {({ activateAuth }) => {
+      return <UserForm onSubmit={activateAuth} />
+    }}
+  </Context.Consumer>
+)
+>>>>>>> 0fac051efc47806907b67fba850277a9580c9a26
